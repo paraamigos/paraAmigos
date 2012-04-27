@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<f:view xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+	<html>
+    	<h:head>
+			<!-- Definicao do encoding para os browsers -->
+        	<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8"/>
+        	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+        	<meta http-equiv="Pragma" content="no-cache"/>
+        	<meta http-equiv="Expires" content="-1"/>
+
+			<title>#{msg.titulo_aplicacao}</title>	
+			
+			<link 
+				href="#{request.contextPath}/css/style.css" 
+				rel="stylesheet" 
+				type="text/css" />
+       		
+    	</h:head>
+    	<body>
+    	
+            <ui:insert name="conteudo"/>
+        
+    	</body>
+	</html>
+</f:view>
+
+
+
+
+
+
+
+

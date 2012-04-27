@@ -1,0 +1,48 @@
+	.logoParaAmigos {
+		font-family: Arial, Helvetica, sans-serif;
+		font-weight: bold;
+		font-size: 26px;
+		color: #003366;
+	}
+
+	.txtBoxIndex {
+		width: 245px;
+	}
+
+	.ui-widget {  
+	    font-size: 13px !important;  
+	}  
+	 
+	#boxLogoTopo {
+		position:absolute;
+		left:9px;
+		top:9px;
+		width:312px;
+		height:45px;
+		z-index:3;
+	}
+
+	#toolbarIndex {
+		position: absolute;
+		left: 10px;
+		top: 55px;
+		width: 940px;
+		height: 25px;
+		z-index: 1;
+	}
+	
+	#boxRegIndex {
+		position: absolute;
+		left: 35px;
+		top: 120px;
+		width: 340px;
+		height: 214px;
+		z-index: 2;
+	}
+
+	
+	
+	
+	
+	
+	
