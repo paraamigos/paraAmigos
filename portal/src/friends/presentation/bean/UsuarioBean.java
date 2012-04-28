@@ -25,16 +25,18 @@ public class UsuarioBean extends BaseApplicationBean<Usuario> implements Seriali
 	
 	
 	public String logar() {
+		String outcome = "home";
+		
 		try {
 			Usuario usuario = usuarioService.verificaLogin(login);
 			
 			setEntity(usuario);
 			
 		} catch (LoginException e) {
-			getEntity().setNome("email ou senha invalidos!");
+			outcome = "validaRegistro";
 		}
 		
-		return "home";
+		return outcome;
 	}
 	
 	public String save() {
