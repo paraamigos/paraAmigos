@@ -7,49 +7,56 @@
     template="/templates/template.xhtml">
 
 <ui:define name="conteudo">
-	<h:form>
+  <h:form>
 	
-		<div>
-			<p:panel header="#{msg.lb_cad_agora_panel}">
-			
-				#{msg.lb_nome} <br/>
-				<h:inputText
-					value="#{usuarioBean.entity.nome}" 
-					styleClass="txtBoxIndex"
-					maxlength="150" 
-					id="nome"/>
+	<div class="styleDivErroValRegist" 
+		 id="divErroValRegist">
+    	 #{msg.msg_ocorreram_err} ao se logar 
+    </div>
 	
-				<br/><br/>
-			
-				#{msg.lb_email} <br/> 
-				<h:inputText
-					value="#{usuarioBean.entity.email}"
-					styleClass="txtBoxIndex"
-					maxlength="150" 
-					id="emailBox"/>
-					
-				<br/><br/>
+	<div id="divBoxErrValRegist">
+	
+		<br/><br/><br/>
+    
+    	<p:panel header="#{msg.lb_cad_agora_panel}">
+    	
+			#{msg.lb_nome} <br/>
+			<h:inputText
+				value="#{usuarioBean.entity.nome}" 
+				styleClass="txtBoxIndex"
+				maxlength="150" 
+				id="nome"/>
+	
+			<br/><br/>
+		
+			#{msg.lb_email} <br/> 
+			<h:inputText
+				value="#{usuarioBean.entity.email}"
+				styleClass="txtBoxIndex"
+				maxlength="150" 
+				id="emailBox"/>
 				
-				#{msg.lb_senha} <br/> 
-				<h:inputSecret 
-					value="#{usuarioBean.entity.senha}" 
-					styleClass="txtBoxIndex"
-					maxlength="50"
-					id="senhaBox" />
+			<br/><br/>
+			
+			#{msg.lb_senha} <br/> 
+			<h:inputSecret 
+				value="#{usuarioBean.entity.senha}" 
+				styleClass="txtBoxIndex"
+				maxlength="50"
+				id="senhaBox" />
 	
-				<br/><br/>
+			<br/><br/>
 	
-				<h:commandLink 
-					action="#{usuarioBean.save}">
-					<p:button 
-						value="#{msg.lb_cad_agora}" />
-				</h:commandLink>
-				
-			</p:panel>
-		</div>
+			<h:commandLink 
+				action="#{usuarioBean.save}">
+				<p:button 
+					value="#{msg.lb_cad_agora}" />
+			</h:commandLink>
+			
+		</p:panel>	
+	</div>
 	
-	
-	</h:form>
+  </h:form>
 </ui:define>
 </ui:composition>
 
