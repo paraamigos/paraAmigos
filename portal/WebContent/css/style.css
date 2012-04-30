@@ -1,3 +1,31 @@
+
+	#divBoxErrValRegist {
+		position: absolute;
+		left: 410px;
+		top: 87px;
+		width: 336px;
+		height: 336px;
+		z-index: 2;
+	}
+
+	#divErroValRegist {
+		background-color: #FF3333;
+		position:absolute;
+		text-align:center;
+		left:420px;
+		top:96px;
+		width:317px;
+		height:41px;
+		z-index:3;
+	}
+
+	.styleDivErroValRegist {
+		color: #FFFFFF;
+		font-family: sans-serif; 
+		font-weight: bold;
+		font-size: 18px;
+	}
+
 	.logoParaAmigos {
 		font-family: Arial, Helvetica, sans-serif;
 		font-weight: bold;
@@ -12,7 +40,30 @@
 	.ui-widget {  
 	    font-size: 13px !important;  
 	}  
-	 
+
+	.cssBoxMsgIndex {
+		font-family:'Verdana';
+		color:Red;
+	}
+
+	#boxMsgEmailIndex {
+		position:absolute;
+		left:465px;
+		top:95px;
+		width:400px;
+		height:45px;
+		z-index:4;
+	}
+
+	#boxMsgSenhaIndex {
+		position:absolute;
+		left:700px;
+		top:95px;
+		width:400px;
+		height:45px;
+		z-index:4;
+	}
+
 	#boxLogoTopo {
 		position:absolute;
 		left:9px;

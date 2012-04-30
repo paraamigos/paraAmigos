@@ -10,11 +10,18 @@ import javax.persistence.NamedQuery;
 @Entity
 @NamedQueries ({
 	@NamedQuery(
-		name  = "Usuario.findExistLogin",
+		name  = "Usuario.findExistEmail",
+		query = "select u " +
+				"from 	Usuario u " +
+				"where	u.email = ? "
+		 
+	),
+	@NamedQuery(
+		name  = "Usuario.findExistUsuario",
 		query = "select u " +
 				"from 	Usuario u " +
 				"where	u.email = ? " +
-				"and	u.senha = ? "
+				"and 	u.senha = ?"
 		 
 	)
 })
@@ -22,8 +29,10 @@ public class Usuario implements Serializable {
 
 	private static final long serialVersionUID = -3901064097251122735L;
 	
-	public static final String findExistLogin = "Usuario.findExistLogin"; 
-	
+	public static final String findExistUsuario = "Usuario.findExistUsuario"; 
+
+	public static final String findExistEmail = "Usuario.findExistEmail"; 
+
 	private String email;
 	private String nome;
 	private String senha;
