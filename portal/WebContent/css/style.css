@@ -1,3 +1,29 @@
+	#divMsgValRegNome {
+		position: absolute;
+		left: 21px;
+		top: 138px;
+		width: 450px;
+		height: 300px;
+		z-index: 4;
+	}
+	
+	#divMsgValRegEmail {
+		position: absolute;
+		left: 21px;
+		top: 208px;
+		width: 450px;
+		height: 300px;
+		z-index: 5;
+	}
+	
+	#divMsgValRegSenha {
+		position: absolute;
+		left: 21px;
+		top: 278px;
+		width: 450px;
+		height: 300px;
+		z-index: 6;
+	}
 
 	#divBoxErrValRegist {
 		position: absolute;
@@ -40,7 +66,30 @@
 	.ui-widget {  
 	    font-size: 13px !important;  
 	}  
-	 
+
+	.cssBoxMsgIndex {
+		font-family:'Verdana';
+		color:Red;
+	}
+
+	#boxMsgEmailIndex {
+		position:absolute;
+		left:465px;
+		top:95px;
+		width:400px;
+		height:45px;
+		z-index:4;
+	}
+
+	#boxMsgSenhaIndex {
+		position:absolute;
+		left:700px;
+		top:95px;
+		width:400px;
+		height:45px;
+		z-index:4;
+	}
+
 	#boxLogoTopo {
 		position:absolute;
 		left:9px;

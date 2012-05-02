@@ -12,8 +12,22 @@
 		<div id="boxLogoTopo">
 			<span class="logoParaAmigos">
 				#{msg.titulo_aplicacao}
-			</span>    
+			</span>
 	    </div>
+
+		<div id="boxMsgEmailIndex">
+			<h:outputText
+				rendered="#{not empty usuarioBean.msgEmail}" 
+				value="#{usuarioBean.msgEmail}" 
+				styleClass="cssBoxMsgIndex" /> 
+		</div>
+
+		<div id="boxMsgSenhaIndex">
+			<h:outputText
+				rendered="#{not empty usuarioBean.msgSenha}" 
+				value="#{usuarioBean.msgSenha}" 
+				styleClass="cssBoxMsgIndex" /> 
+		</div>
 		
 		<div id="toolbarIndex">
 			<p:toolbar>
