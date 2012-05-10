@@ -8,44 +8,66 @@
 
 <ui:define name="conteudo">
   <h:form>
-	
+
 	<div class="styleDivErroValRegist" 
 		 id="divErroValRegist">
-    	 #{msg.msg_ocorreram_err} ao se logar 
+    	 #{msg.msg_ocorreram_err} ao se #{usuarioBean.msgProcess} 
     </div>
 	
 	<div id="divBoxErrValRegist">
 	
 		<br/><br/><br/>
     
-    	<p:panel header="#{msg.lb_cad_agora_panel}">
+    	<p:panel
+    		style="left: 415px">
     	
 			#{msg.lb_nome} <br/>
 			<h:inputText
 				value="#{usuarioBean.entity.nome}" 
-				styleClass="txtBoxIndex"
+				styleClass="txtBoxValReg"
 				maxlength="150" 
 				id="nome"/>
+				
+			<div id="divMsgValRegNome"
+				class="cssBoxMsgIndex">
+				<h:outputText
+					rendered="#{not empty usuarioBean.msgNome}" 
+					value="#{usuarioBean.msgEmail}" /> 
+			</div>
 	
-			<br/><br/>
+			<br/><br/><br/>
 		
 			#{msg.lb_email} <br/> 
 			<h:inputText
 				value="#{usuarioBean.entity.email}"
-				styleClass="txtBoxIndex"
+				styleClass="txtBoxValReg"
 				maxlength="150" 
 				id="emailBox"/>
+
+			<div id="divMsgValRegEmail"
+				class="cssBoxMsgIndex">
+				<h:outputText
+					rendered="#{not empty usuarioBean.msgEmail}" 
+					value="#{usuarioBean.msgEmail}" /> 
+			</div>
 				
-			<br/><br/>
+			<br/><br/><br/>
 			
 			#{msg.lb_senha} <br/> 
 			<h:inputSecret 
 				value="#{usuarioBean.entity.senha}" 
-				styleClass="txtBoxIndex"
+				styleClass="txtBoxValReg"
 				maxlength="50"
 				id="senhaBox" />
 	
-			<br/><br/>
+			<div id="divMsgValRegSenha"
+				class="cssBoxMsgIndex">
+				<h:outputText
+					rendered="#{not empty usuarioBean.msgSenha}" 
+					value="#{usuarioBean.msgSenha}" /> 
+			</div>
+	
+			<br/><br/><br/>
 	
 			<h:commandLink 
 				action="#{usuarioBean.save}">

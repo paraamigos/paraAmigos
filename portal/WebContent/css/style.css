@@ -1,9 +1,35 @@
+	#divMsgValRegNome {
+		position: absolute;
+		left: 19px;
+		top: 109px;
+		width: 450px;
+		height: 300px;
+		z-index: 4;
+	}
+	
+	#divMsgValRegEmail {
+		position: absolute;
+		left: 19px;
+		top: 182px;
+		width: 450px;
+		height: 300px;
+		z-index: 5;
+	}
+	
+	#divMsgValRegSenha {
+		position: absolute;
+		left: 19px;
+		top: 255px;
+		width: 450px;
+		height: 300px;
+		z-index: 6;
+	}
 
 	#divBoxErrValRegist {
 		position: absolute;
 		left: 410px;
 		top: 87px;
-		width: 336px;
+		width: 374px;
 		height: 336px;
 		z-index: 2;
 	}
@@ -12,9 +38,9 @@
 		background-color: #FF3333;
 		position:absolute;
 		text-align:center;
-		left:420px;
-		top:96px;
-		width:317px;
+		left:411px;
+		top:104px;
+		width:371px;
 		height:41px;
 		z-index:3;
 	}
@@ -35,6 +61,10 @@
 
 	.txtBoxIndex {
 		width: 245px;
+	}
+
+	.txtBoxValReg {
+		width: 332px;
 	}
 
 	.ui-widget {  

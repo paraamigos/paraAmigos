@@ -26,9 +26,12 @@ public class UsuarioBean extends BaseApplicationBean<Usuario> implements Seriali
 	
 	private Usuario login = new Usuario();
 
+	private String msgProcess;
 	private String msgEmail;
 	private String msgSenha;
+	private String msgNome;
 	
+
 	
 	public String logar() {
 		String outcome = "home";
@@ -41,15 +44,32 @@ public class UsuarioBean extends BaseApplicationBean<Usuario> implements Seriali
 			setEntity(usuario);
 			
 		} catch (LoginException e) {
-			outcome = "index";
-			
-			if (e.getMessageKey() != null) {
-				msgSenha = FacesUtil.getResourceBundleMessage("msg", e.getMessageKey());
-			}
+			outcome = catchLoginException(e);
 		} catch (EmailNotFoundException e) {
-			outcome = "validaRegistro";
+			outcome = catchEmailNotFoundException();
 		}
 		return outcome;
+	}
+
+	private String catchEmailNotFoundException() {
+		msgProcess = FacesUtil.getResourceBundleMessage("msg", "msg_process_logar");
+		
+		msgEmail = FacesUtil.getResourceBundleMessage("msg", "msg_email_nao_cad");
+	
+		Usuario usuario = getEntity();
+		usuario.setEmail(null);
+		usuario.setSenha(null);
+		
+		return "validaRegistro";
+	}
+
+	private String catchLoginException(LoginException e) {
+		if (e.getMessageKey() != null) {
+			msgSenha = FacesUtil.getResourceBundleMessage(
+								"msg", e.getMessageKey()
+							);
+		}
+		return "index";
 	}
 
 	private void validaLogin(Usuario login) throws LoginException {
@@ -90,6 +110,12 @@ public class UsuarioBean extends BaseApplicationBean<Usuario> implements Seriali
 	public String getMsgSenha() {
 		return msgSenha;
 	}
-	
-	
+
+	public String getMsgNome() {
+		return msgNome;
+	}
+
+	public String getMsgProcess() {
+		return msgProcess;
+	}
 }
