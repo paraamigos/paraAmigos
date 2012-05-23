@@ -8,12 +8,15 @@ import java.lang.annotation.Target;
 /**
  * Annotation para campos obrigat&oacute;rios
  * 
- * @author DBA Eng. de Sistemas
+ * @author Luiz Sodré
  * @since 05/09/2011
  *
  */
 @Retention(RetentionPolicy.RUNTIME) 
-@Target(ElementType.FIELD)
+@Target({
+	ElementType.FIELD,
+	ElementType.METHOD
+})
 public @interface Required {
 
 	/**

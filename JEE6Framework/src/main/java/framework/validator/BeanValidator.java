@@ -2,9 +2,11 @@ package framework.validator;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
+import java.lang.reflect.Method;
 
 import org.apache.commons.lang.StringUtils;
 
+import framework.application.ApplicationException;
 import framework.reflection.BeansUtil;
 
 /**
@@ -60,6 +62,45 @@ public class BeanValidator {
 		}
 	}
 	
+	private static boolean isRequiredInFields(Object bean) {
+		boolean isPresent = false;
+		
+		Field[] fields = BeansUtil.getDeclaredFields(bean);
+		
+		for (Field field : fields) {
+			for (Annotation annotation : field.getAnnotations()) {
+				if (annotation instanceof Required) {
+					isPresent = true;
+					break;
+				}
+			}
+			if (isPresent) {
+				break;
+			}
+		}
+		return isPresent;
+	}
+	
+	
+	private static boolean isRequiredInMethods(Object bean) {
+		boolean isPresent = false;
+		
+		Method[] methods = BeansUtil.getDeclaredMethods(bean);
+		
+		for (Method method : methods) {
+			for (Annotation annotation : method.getAnnotations()) {
+				if (annotation instanceof Required) {
+					isPresent = true;
+					break;
+				}
+			}
+			if (isPresent) {
+				break;
+			}
+		}
+		return isPresent;
+	}
+	
 	
 	/**
  	 * Valida se os campos de um bean que est&atilde;o
@@ -68,15 +109,30 @@ public class BeanValidator {
 	 * @param bean bean a ser validado
 	 */
 	public static void validate(Object bean) {
-		Field[] fields = BeansUtil.getDeclaredFields(bean);
-		
-		for (Field field : fields) {
-			for (Annotation annotation : field.getAnnotations()) {
-				if (annotation instanceof Required) {
-					Required required = (Required) annotation;
-					
-					validateRequiredValue(field, required, bean);
-					break;
+		if (isRequiredInFields(bean)) {
+			Field[] fields = BeansUtil.getDeclaredFields(bean);
+			
+			for (Field field : fields) {
+				for (Annotation annotation : field.getAnnotations()) {
+					if (annotation instanceof Required) {
+						Required required = (Required) annotation;
+						
+						validateRequiredValue(field, required, bean);
+						break;
+					}
+				}
+			}
+		} else if (isRequiredInMethods(bean)) {
+			Method[] methods = BeansUtil.getDeclaredMethods(bean);
+			
+			for (Method method : methods) {
+				for (Annotation annotation : method.getAnnotations()) {
+					if (annotation instanceof Required) {
+						Required required = (Required) annotation;
+						
+						validateRequiredValue(method, required, bean);
+						break;
+					}
 				}
 			}
 		}
@@ -92,6 +148,22 @@ public class BeanValidator {
 	private static void validateRequiredValue(Field field,Required requiredAnnotation,Object bean) {
 		Object value = BeansUtil.getFieldValue(field, bean);
 		
+		validateValue(requiredAnnotation, value);
+	}
+
+	private static void validateRequiredValue(Method method,Required requiredAnnotation,Object bean) {
+		Object value = null;
+		
+		try {
+			value = method.invoke(bean);
+		} catch (Exception e) {
+			throw new ApplicationException(e);
+		}
+		
+		validateValue(requiredAnnotation, value);
+	}
+
+	private static void validateValue(Required requiredAnnotation, Object value) {
 		if (value instanceof String) {
 			String stringValue = (String) value;
 			
@@ -102,8 +174,7 @@ public class BeanValidator {
 			throwBeanValidatorException(requiredAnnotation);
 		}
 	}
-
-
+	
 	/**
 	 * Lan&ccedil;a a exce&ccedil;&atilde;o de valida&ccedil;&atilde;o
 	 * 

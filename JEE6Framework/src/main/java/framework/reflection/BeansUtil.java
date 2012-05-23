@@ -24,6 +24,11 @@ public class BeansUtil {
 	}
 
 
+	public static Method[] getDeclaredMethods(Object object) {
+		return object.getClass()
+					 .getDeclaredMethods();
+	}
+	
 	/**
 	 * Retorna os campos de um objeto
 	 * 

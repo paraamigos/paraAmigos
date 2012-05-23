@@ -19,6 +19,7 @@ public class UsuarioService extends BaseApplicationService {
 	
 	
 	public void saveUsuario(Usuario usuario) {
+		
 		criptografaSenha(usuario);
 		
 		super.save(usuario);

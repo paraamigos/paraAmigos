@@ -13,6 +13,7 @@ import framework.presentation.faces.FacesUtil;
 import friends.model.entity.Usuario;
 import friends.model.exception.EmailNotFoundException;
 import friends.model.exception.LoginException;
+import friends.model.exception.RegistroUsuarioException;
 import friends.model.service.UsuarioService;
 
 @Named
@@ -32,6 +33,43 @@ public class UsuarioBean extends BaseApplicationBean<Usuario> implements Seriali
 	private String msgNome;
 	
 
+
+	public String save() {
+		Usuario usuario = getEntity();
+		String outcome = "home";
+		
+		try {
+			validateRegistro(usuario);
+
+			usuarioService.saveUsuario(usuario);
+
+		} catch (RegistroUsuarioException e) {
+			outcome = "validaRegistro";
+		} catch (LoginException e) {
+			outcome = "validaRegistro";
+		}
+		return outcome;
+	}
+
+	private void validateRegistro(Usuario usuario) 
+			throws	RegistroUsuarioException, 
+					LoginException {
+		
+		msgProcess 	 = FacesUtil.getResourceBundleMessage("msg", "msg_process_cad");
+		String senha = usuario.getSenha();
+		String nome  = usuario.getNome();
+		
+		if (StringUtils.isBlank(nome)) {
+			msgNome = FacesUtil.getResourceBundleMessage("msg", "msg_nome_required");
+			throw new RegistroUsuarioException();
+		}
+		validaLogin(usuario);
+		
+		if (senha.length() < 6) {
+			msgSenha = FacesUtil.getResourceBundleMessage("msg", "msg_senha_menor6");
+			throw new RegistroUsuarioException();
+		}
+	}
 	
 	public String logar() {
 		String outcome = "home";
@@ -85,16 +123,7 @@ public class UsuarioBean extends BaseApplicationBean<Usuario> implements Seriali
 			throw new LoginException();
 		}
 	}
-
 	
-	public String save() {
-		Usuario usuario = getEntity();
-		
-		usuarioService.saveUsuario(usuario);
-		
-		return "home";
-	}
-
 	public Usuario getLogin() {
 		return login;
 	}

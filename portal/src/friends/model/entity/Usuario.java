@@ -7,6 +7,8 @@ import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 
+import framework.validator.Required;
+
 @Entity
 @NamedQueries ({
 	@NamedQuery(
@@ -44,6 +46,7 @@ public class Usuario implements Serializable {
 	 * @return the email
 	 */
 	@Id
+	@Required(messageKey = "msg_email_required")
 	public String getEmail() {
 		return email;
 	}
@@ -56,6 +59,7 @@ public class Usuario implements Serializable {
 	/**
 	 * @return the nome
 	 */
+	@Required(messageKey = "msg_nome_required")
 	public String getNome() {
 		return nome;
 	}
@@ -68,6 +72,7 @@ public class Usuario implements Serializable {
 	/**
 	 * @return the senha
 	 */
+	@Required(messageKey = "msg_senha_required")
 	public String getSenha() {
 		return senha;
 	}
